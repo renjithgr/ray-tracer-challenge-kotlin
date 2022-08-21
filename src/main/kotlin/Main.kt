@@ -1,3 +1,5 @@
+import java.io.File
+
 data class Projectile(val position: Tuple, val velocity: Tuple)
 data class Environment(val gravity: Tuple, val wind: Tuple)
 
@@ -8,12 +10,14 @@ fun tick(environment: Environment, projectile: Projectile): Projectile {
 }
 
 fun main(args: Array<String>) {
-    var projectile = Projectile(point(0.0, 1.0, 0.0), vector(1.0, 1.0, 0.0).normalize())
-    val environment = Environment(vector(0.0, -0.1, 0.0), vector(-0.01, 0.0, 0.0))
+//    var projectile = Projectile(point(0.0, 1.0, 0.0), vector(1.0, 1.0, 0.0).normalize())
+//    val environment = Environment(vector(0.0, -0.1, 0.0), vector(-0.01, 0.0, 0.0))
+//
+//    while(projectile.position.y >= 0) {
+//        projectile = tick(environment, projectile)
+//        println(projectile.position.y)
+//    }
 
-    while(projectile.position.y >= 0) {
-        projectile = tick(environment, projectile)
-        println(projectile.position.y)
-    }
-
+    val content = PPMFile(100, 100).content()
+    File("test.ppm").writeText(content)
 }
