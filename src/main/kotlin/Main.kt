@@ -1,3 +1,27 @@
+interface Tuple {
+    val x: Double
+    val y: Double
+    val z: Double
+    val w: Double
+}
+
+class Point(
+    override val x: Double,
+    override val y: Double,
+    override val z: Double
+) : Tuple {
+    override val w: Double = 1.0
+}
+
+class Vector(
+    override val x: Double,
+    override val y: Double,
+    override val z: Double
+) : Tuple {
+    override val w: Double = 0.0
+}
+
+
 fun main(args: Array<String>) {
     println("Hello World!")
 
