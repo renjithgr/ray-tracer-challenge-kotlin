@@ -95,5 +95,21 @@ class TupleTests {
                 vector(1.0, 2.0 ,3.0).normalize().magnitude()
             )
         }
+
+        @Test
+        internal fun `dot product of two tuples`() {
+            assertEquals(
+                20.0,
+                vector(1.0, 2.0, 3.0) dot vector(2.0, 3.0, 4.0)
+            )
+        }
+
+        @Test
+        internal fun `cross product of two vectors`() {
+            val a = vector(1.0, 2.0, 3.0)
+            val b = vector(2.0, 3.0, 4.0)
+            assertEquals(vector(-1.0, 2.0, -1.0 ), a cross b)
+            assertEquals(vector(1.0, -2.0, 1.0 ), b cross a)
+        }
     }
 }
