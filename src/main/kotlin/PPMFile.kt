@@ -9,16 +9,13 @@ data class PPMFile(val width: Int, val height: Int) {
             |$PPM_MAXIMUM_COLOR_VALUE
         """.trimIndent().trimMargin()
 
+    private val builder = StringBuilder().append(header).append("\n")
+
+    fun append(line: String) {
+        builder.append(line).append("\n")
+    }
+
     fun content(): String {
-        val builder = StringBuilder()
-        builder.append(header)
-        repeat(height) {
-            builder.append("\n")
-            repeat(width) {
-                builder.append("255 0 0")
-            }
-        }
-        builder.append("\n")
         return builder.toString()
     }
 }
