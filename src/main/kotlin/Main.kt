@@ -10,8 +10,8 @@ fun tick(environment: Environment, projectile: Projectile): Projectile {
 }
 
 fun main(args: Array<String>) {
-    var width = 900
-    var height = 550
+    val width = 900
+    val height = 550
 
     var projectile = Projectile(point(0.0, 1.0, 0.0), vector(1.0, 1.8, 0.0).normalize() * 11.25)
     val environment = Environment(vector(0.0, -0.1, 0.0), vector(-0.01, 0.0, 0.0))
