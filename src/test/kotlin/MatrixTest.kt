@@ -28,4 +28,18 @@ internal class MatrixTest {
 
         assertEquals(c, a * b)
     }
+
+    @Test
+    internal fun `A matrix multiplied by a tuple`() {
+        val a = Matrix.new(
+            intArrayOf(1, 2, 3, 4),
+            intArrayOf(2, 4, 4, 2),
+            intArrayOf(8, 6, 4, 1),
+            intArrayOf(0, 0, 0, 1),
+        )
+
+        val b = tuple(1.0, 2.0, 3.0, 1.0)
+
+        assertEquals(tuple(18.0, 24.0, 33.0, 1.0), a * b)
+    }
 }
