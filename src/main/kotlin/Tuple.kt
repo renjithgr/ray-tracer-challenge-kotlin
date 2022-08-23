@@ -25,3 +25,6 @@ typealias tuple = Tuple
 
 fun point(x: Double, y: Double, z: Double) = Tuple(x, y, z, 1.0)
 fun vector(x: Double, y: Double, z: Double) = Tuple(x, y, z, 0.0)
+
+operator fun Double.times(direction: Tuple) = direction * this
+
