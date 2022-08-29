@@ -10,22 +10,34 @@ fun tick(environment: Environment, projectile: Projectile): Projectile {
 }
 
 fun main(args: Array<String>) {
-    val width = 900
-    val height = 550
-
-    var projectile = Projectile(point(0.0, 1.0, 0.0), vector(1.0, 1.8, 0.0).normalize() * 11.25)
-    val environment = Environment(vector(0.0, -0.1, 0.0), vector(-0.01, 0.0, 0.0))
-    val canvas = Canvas(width, height)
-
-    while(projectile.position.y >= 0) {
-        projectile = tick(environment, projectile)
-        val y = (height - projectile.position.y).toInt()
-        val x = (width - projectile.position.x).toInt()
-        println("${projectile.position.y} - (${x}, ${y})")
-        canvas.writePixel(x, y, color(255.0, 0.0, 0.0))
-    }
+    val width = 100
+    val height = 100
 
     val file = PPMFile(width, height)
+
+    val rayOrigin = point(0.0, 0.0, -5.0)
+    val wallZ = 10.0
+    val wallSize = 7.0
+    val canvasPixels = 100
+    val pixelSize = wallSize / canvasPixels
+    val half = wallSize / 2
+    val canvas = Canvas(canvasPixels, canvasPixels)
+    val shape = sphere()
+    val color = color(1.0, 0.0, 0.0)
+
+    for (y in 0 until canvasPixels) {
+        val worldY = half - pixelSize * y
+        for (x in 0 until canvasPixels) {
+            val worldX = -half + pixelSize * x
+            val position = point(worldX, worldY, wallZ)
+            val r = ray(rayOrigin, (position - rayOrigin).normalize())
+            val xs = intersection(shape, r)
+
+            if(xs.isNotEmpty() && xs.firstOrNull{ it.t >= 0 } != null) {
+                canvas.writePixel(x, y, color)
+            }
+        }
+    }
 
     canvas
         .getPixelColors()
