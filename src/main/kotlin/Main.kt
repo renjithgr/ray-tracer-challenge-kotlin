@@ -1,14 +1,5 @@
 import java.io.File
 
-data class Projectile(val position: Tuple, val velocity: Tuple)
-data class Environment(val gravity: Tuple, val wind: Tuple)
-
-fun tick(environment: Environment, projectile: Projectile): Projectile {
-    val position = projectile.position + projectile.velocity
-    val velocity = projectile.velocity + environment.gravity + environment.wind
-    return Projectile(position, velocity)
-}
-
 fun main(args: Array<String>) {
     val width = 100
     val height = 100
